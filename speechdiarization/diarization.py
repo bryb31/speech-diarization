@@ -55,3 +55,4 @@ def load_diarization(file_path):
     # Load annotation again - im not sure what the load_rttm method returns.
     # will have to check
     loaded_object = load_rttm(file_path)
+    print(loaded_object)
