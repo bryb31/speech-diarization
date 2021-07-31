@@ -1,6 +1,5 @@
 import sys
 
-import pyannote
 import speechdiarization.diarization
 
 

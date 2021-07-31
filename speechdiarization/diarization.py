@@ -17,14 +17,20 @@ def run_diarization_pipeline(data_dir, output_dir=None, overwrite_data=False):
     if output_dir is None:
         output_dir = os.path.join(data_dir, "diarization")
 
-    if os.path.exists(output_dir) and not overwrite_data:
-        print("Exiting: Output dir already exists. {}".format(output_dir))
-        return 1
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
 
     for input_file in os.listdir(wav_dir):
         # fixme: avfiles cannot contian dir. make this code handle nested dirs (tip: os.walk + check if item is file)
         file_name, file_extension = input_file.split(".")  # canot handle cases where foo.bar.wav
         input_file_path = os.path.join(wav_dir, input_file)
+        if os.path.exists(input_file_path) and not overwrite_data:
+            print("Exiting: Output path already exists {}. Skipping: {}".format(
+                output_dir,
+                file_name
+            ))
+            pass
+
         print("Currently processing for: {}".format(input_file_path))
 
         input_file_dict = input_file_dict = {
@@ -41,8 +47,11 @@ def run_diarization_pipeline(data_dir, output_dir=None, overwrite_data=False):
 
         with open(output_file_path, 'w') as file:
             annotation.write_rttm(file)
-        # Load annotation again - im not sure what the load_rttm method returns.
-        # will have to check
-        loaded_object = load_rttm(output_file_path)
-
     return 0
+
+
+def load_diarization(file_path):
+    print("Loading Diarization: {}".format(file_path))
+    # Load annotation again - im not sure what the load_rttm method returns.
+    # will have to check
+    loaded_object = load_rttm(file_path)
