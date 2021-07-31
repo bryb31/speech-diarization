@@ -20,7 +20,7 @@ setup(
     install_requires=[
         # specify your requirements here:
         'pyannote.audio==1.1',
-        'torch==-1.9.0'
+        'torch==1.9.0'
     ],
     extras_require={
         'dev': [
