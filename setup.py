@@ -31,7 +31,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'speech = speechdiarization.main:print_hi',
+            'speech = speechdiarization.main',
             ]
         },
 )

@@ -20,7 +20,7 @@ piplist : install
 
 test : .venv/bin/speech .venv/bin/flake8 .venv/bin/coverage
 	.venv/bin/pip install pytest
-	.venv/bin/flake8 --max-line-length 120 speech
+	.venv/bin/flake8 --max-line-length 120 speechdiarization
 	.venv/bin/coverage run -m pytest
 
 clean :
