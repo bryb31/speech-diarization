@@ -1,13 +1,17 @@
+import sys
+
 import pyannote
+import speechdiarization.diarization
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+def main():
+    data_dir = '/Users/bryonybuck/data/HSSS/e187_22346_31546'
+    return speechdiarization.diarization.run_diarization_pipeline(
+        data_dir, output_dir=None, overwrite_data=False
+    )
 
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    sys.exit(main())
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/

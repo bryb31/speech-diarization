@@ -20,6 +20,7 @@ setup(
     install_requires=[
         # specify your requirements here:
         'pyannote.audio==1.1',
+        'torch==-1.9.0'
     ],
     extras_require={
         'dev': [
@@ -31,7 +32,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'speech = speechdiarization.main',
+            'speech = speechdiarization.main:main',
             ]
         },
 )
