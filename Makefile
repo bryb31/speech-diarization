@@ -17,6 +17,8 @@ piplist : install
 .venv/bin/coverage : .venv/bin/speech
 	.venv/bin/pip install coverage
 
+run :
+	.venv/bin/speech
 
 test : .venv/bin/speech .venv/bin/flake8 .venv/bin/coverage
 	.venv/bin/pip install pytest
