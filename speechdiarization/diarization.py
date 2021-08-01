@@ -21,38 +21,72 @@ def run_diarization_pipeline(data_dir, output_dir=None, overwrite_data=False):
         os.makedirs(output_dir)
 
     for input_file in os.listdir(wav_dir):
-        # fixme: avfiles cannot contian dir. make this code handle nested dirs (tip: os.walk + check if item is file)
+        # fixme: avfiles cannot contain dir. make this code handle nested dirs (tip: os.walk + check if item is file)
         file_name, file_extension = input_file.split(".")  # canot handle cases where foo.bar.wav
         input_file_path = os.path.join(wav_dir, input_file)
-        if os.path.exists(input_file_path) and not overwrite_data:
-            print("Exiting: Output path already exists {}. Skipping: {}".format(
-                output_dir,
-                file_name
-            ))
-            pass
-
-        print("Currently processing for: {}".format(input_file_path))
 
         input_file_dict = input_file_dict = {
-           'audio': input_file_path
-           }
-
-        # Get annotation from pipeline
-        annotation = pipeline(input_file_dict)
-
-        # We Write the annotation to file
-
+            'audio': input_file_path
+        }
         output_file_name = "{}.rttm".format(file_name)
         output_file_path = os.path.join(output_dir, output_file_name)
 
-        with open(output_file_path, 'w') as file:
-            annotation.write_rttm(file)
+        if os.path.exists(output_file_path) and not overwrite_data:
+            print("Output path already exists {}".format(
+                input_file_path
+            ))
+            prediction = load_diarization(output_file_path)
+        else:
+            print("Currently processing for: {}".format(input_file_path))
+
+            # Get prediction from pipeline
+            prediction = pipeline(input_file_dict)
+
+            # We Write the prediction to file
+
+            with open(output_file_path, 'w') as file:
+                prediction.write_rttm(file)
+
+        overlap_dir = os.path.join(output_dir, 'overlap')
+        output_file_path = os.path.join(overlap_dir, file_name)
+
+        if os.path.exists(output_file_path) and not overwrite_data:
+            print("already exist: {}".format(output_file_path))
+            pass
+        else:
+            prediction = infer_speaker_overlap_from_audio(
+                input_file_dict=input_file_dict,
+                output_dir=overlap_dir,
+                file_name=file_name
+            )
+
+
     return 0
 
 
 def load_diarization(file_path):
     print("Loading Diarization: {}".format(file_path))
-    # Load annotation again - im not sure what the load_rttm method returns.
+    # Load diarization again - im not sure what the load_rttm method returns.
     # will have to check
-    loaded_object = load_rttm(file_path)
-    print(loaded_object)
+    diarization = load_rttm(file_path)
+    return diarization
+
+
+def infer_speaker_overlap_from_audio(input_file_dict, output_dir, file_name):
+    """
+    takes a wav file and runs inferences via model on audio to determine overlap
+    writes overlap prediction to output_file_path
+    :return:
+    """
+    model = torch.hub.load('pyannote/pyannote-audio', 'ovl_ami', pipeline=True)
+    prediction = model(input_file_dict)
+
+    output_file_path = os.path.join(output_dir, file_name)
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+
+    with open(output_file_path, 'w') as file:
+        # TODO: make filenames understandable at a glance. regardless of directory.
+        prediction.write_rttm(file)
+
+    return prediction
