@@ -48,10 +48,10 @@ def run_diarization_pipeline(data_dir, output_dir=None, overwrite_data=False):
                 prediction.write_rttm(file)
 
         overlap_dir = os.path.join(output_dir, 'overlap')
-        output_file_path = os.path.join(overlap_dir, file_name)
+        overlap_file_path = os.path.join(overlap_dir, file_name)
 
-        if os.path.exists(output_file_path) and not overwrite_data:
-            print("already exist: {}".format(output_file_path))
+        if os.path.exists(overlap_file_path) and not overwrite_data:
+            print("already exist: {}".format(overlap_file_path))
             pass
         else:
             prediction = infer_speaker_overlap_from_audio(
@@ -60,7 +60,7 @@ def run_diarization_pipeline(data_dir, output_dir=None, overwrite_data=False):
                 file_name=file_name
             )
 
-
+        overlap_prediction = load_diarization(overlap_file_path)
     return 0
 
 
