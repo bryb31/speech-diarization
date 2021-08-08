@@ -2,30 +2,43 @@
 
 Setup for Python.
 
-## examples with makefile
+## opening in WSL
 
-We've added a Makefile so that you can have a see what each command does individually.
+Once you have installed and activated WSL an Ubuntu terminal will open running a virtual Machine on your windows computer.
 
-To run each example in the Makefile just execute
+This is seperate from your normal runtime and acts a little like a virtual environment (see below)
 
-```
-make <name of task>
-e.g.
-make piplist
-```
-To run all commands execute
+As a result, you may need to mount your C drive or copy data files into WSL to be able to act on them.
+
+Create a new directory using 
 
 ```
-make run
+mkdir pyannote-audio-tutorial  
+```
+(you can name this whatever you want)
+
+Enter the new directory using 
+```
+cd pyannote-audio-tutorial
+```
+
+Copy any files you need into WSL 
+
+```
+cp /mnt/c/Users/<your_name>/<path_to_the_file>/filename.type .
+```
+if you have not yet cloned the git repository, you can do this now. or copy the files into your present working directory
+- for example, to copy the requirements file, use
+```
+cp /mnt/c/Users/<your_name>/<path_to_the_file>/requirements.txt .
 ```
 
 ## Python and Pip Runtime
 
-To runn python you need a python runtime. This is a basically an interpreter for the python language that translates you code into a actual operations.
-You don't really need to know anything about this. But what is inportant is understanding that there are many different ways to setup python 
-on your machine.
+To run python you need a python runtime. This is a basically an interpreter for the python language that translates your code into operations.
+There are many different ways to setup python. It is not important to understand these in detail, but it is useful to be able to follow what you did and how you did it.
 
-find out what version of python you have with
+You can find out what version of python you have with
 
 ```
 python --version
@@ -49,9 +62,10 @@ You should be running around python 3.8 and pip 20.
 
 ## Virtual environments
 
-When developing its good to isolate the environment you are working on from the underlying system its running on.
-one simple ( but not entirely robust) way of doing this is using virtua environments. Think of these are little isolated sandboxes that think they are all that exists.
-The start as blank slates. You install libs into them. You can destroy them / recreate them. Just get used to them.
+When developing it is good practice to isolate the environment that you are working on from the underlying system it is running on.
+One simple (but not entirely robust) way of doing this is using virtual environments. These are like isolated sandboxes that think they are all that exists.
+They begin as blank slates. You then install libs into them. You can destroy them / recreate them. Most importantly, if anything goes wrong, it only goes wrong in the virtual environment. Not in the underlying controlling system.
+
 
 To create a virtual env you can use the `venv` module in the base python, and define the `directory` in which to create this venv,
 
@@ -67,9 +81,9 @@ You can activate this venv here by sourcing the activate file
 . ./.my-virtual-env/bin/activate
 ```
 
-once activated using `python` and `pip` will use those related to the virtual env.
+Once activated, commands using `python` and `pip` will use those related to the virtual env.
 
-You can also  just use the python binary or related pip binary in this environment with
+You can also use the python binary or related pip binary in this environment with
 ```
 ./.my-virtual-env/bin/python
 ```
@@ -89,17 +103,37 @@ pip list
 
 You should see the difference in the libraries installed in virtual env verses those installed in the global python runtime environment.
 
-## Processing Speech Diarization
+## examples with makefile
 
-Once you have activated your virtual environment and run the Makefile, 
+We've added a Makefile so that you can have a see what each command does individually.
+
+To run each example in the Makefile just execute
 
 ```
-. ./.my-virtual-env/bin/activate
+make <name of task>
+e.g.
+make piplist
+```
+To run all commands execute
 
+```
 make run
 ```
 
-you should have installed pyannote-audio and torch via the requirements.txt (see setup.py). Torch is large so this will take a while but you will only need to do this once.
+## Running Speech Diarization
+
+Once you have activated your virtual environment 
+```
+. ./.my-virtual-env/bin/activate
+```
+
+and run the Makefile
+
+```
+make run
+```
+
+you should now have installed pyannote-audio and torch via the requirements.txt (see setup.py). Torch is large so this will take a while but you will only need to do this once.
 
 From there, all you need to do is point the diarization pipeline at your data and run.
 
@@ -111,6 +145,22 @@ The script looks for a directory called 'wavfiles'. It will upload each .wav fil
 First it processes and outputs the diarization results into a new directory alongside the 'wavfile' directory (called diarization). 
 Next the script uses this diarization pipeine to process the overlap data from the conversation.
 
-You can see **github and **colab for examples and comprehensive description of the pyannote-audio pipelines.
+You can see **github** and **colab** for examples and a comprehensive description of the pyannote-audio pipelines.
+
+## Returning to Windows from WSL
+
+When everything is done, depending on how you ran the files, you may need to copy all the output files generated back to Windows from WSL
+You can do this using 
+
+```
+cp <filename> /mnt/c/Users/<your name>/<path>
+```
+for a file, or
+
+```
+cp <???> /mnt/c/Users/<your name>/<path>
+```
+
+for a directory
 
 
