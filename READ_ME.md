@@ -120,7 +120,7 @@ To run all commands execute
 make run
 ```
 
-## Running Speech Diarization
+## running Speech Diarization
 
 Once you have activated your virtual environment 
 ```
@@ -147,7 +147,7 @@ Next the script uses this diarization pipeine to process the overlap data from t
 
 You can see **github** and **colab** for examples and a comprehensive description of the pyannote-audio pipelines.
 
-## Returning to Windows from WSL
+## returning to Windows from WSL
 
 When everything is done, depending on how you ran the files, you may need to copy all the output files generated back to Windows from WSL
 You can do this using 
