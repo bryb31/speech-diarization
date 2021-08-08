@@ -6,7 +6,7 @@ Setup for Python.
 
 Once you have installed and activated WSL an Ubuntu terminal will open running a virtual machine on your windows computer.
 
-This is seperate from your normal runtime and acts a little like a virtual environment (see below) but with more system access. This allows you to run linux commands instead of dos.
+This is separate from your normal runtime and acts a little like a virtual environment (see below) but with more system access. This allows you to run linux commands instead of dos.
 
 As a result, you may need to mount your C drive or copy data files into WSL to be able to act on them.
 
