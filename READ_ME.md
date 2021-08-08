@@ -4,30 +4,34 @@ Setup for Python.
 
 ## opening in WSL
 
-Once you have installed and activated WSL an Ubuntu terminal will open running a virtual Machine on your windows computer.
+Once you have installed and activated WSL an Ubuntu terminal will open running a virtual machine on your windows computer.
 
-This is seperate from your normal runtime and acts a little like a virtual environment (see below)
+This is seperate from your normal runtime and acts a little like a virtual environment (see below) but with more system access. This allows you to run linux commands instead of dos.
 
 As a result, you may need to mount your C drive or copy data files into WSL to be able to act on them.
 
-Create a new directory using 
+You can create a new directory using 
 
 ```
 mkdir pyannote-audio-tutorial  
 ```
 (you can name this whatever you want)
 
-Enter the new directory using 
+you can then enter the new directory using 
 ```
 cd pyannote-audio-tutorial
 ```
 
-Copy any files you need into WSL 
+copy any files you need into WSL using
 
 ```
 cp /mnt/c/Users/<your_name>/<path_to_the_file>/filename.type .
 ```
-if you have not yet cloned the git repository, you can do this now. or copy the files into your present working directory
+if you have not yet cloned the git repository, you can do this now. 
+
+
+
+alternatively you can copy the files into your present working directory
 - for example, to copy the requirements file, use
 ```
 cp /mnt/c/Users/<your_name>/<path_to_the_file>/requirements.txt .
@@ -145,7 +149,7 @@ The script looks for a directory called 'wavfiles'. It will upload each .wav fil
 First it processes and outputs the diarization results into a new directory alongside the 'wavfile' directory (called diarization). 
 Next the script uses this diarization pipeine to process the overlap data from the conversation.
 
-You can see **github** and **colab** for examples and a comprehensive description of the pyannote-audio pipelines.
+You can see **https://github.com/pyannote/pyannote-audio** for examples and a comprehensive description of the pyannote-audio pipelines.
 
 ## returning to Windows from WSL
 
@@ -163,4 +167,6 @@ cp <???> /mnt/c/Users/<your name>/<path>
 
 for a directory
 
+[comment]: <> ( also helpful: https://linuxhint.com/transfer-files-wsl-windows/)
+[comment]: <> (TODO: how to copy a directory from WSL to windows; check all works on WSL; test if works with UoN Onedrive links) 
 
