@@ -60,7 +60,7 @@ def run_diarization_pipeline(data_dir, output_dir=None, overwrite_data=False):
                 file_name=file_name
             )
 
-        overlap_prediction = load_diarization(overlap_file_path)
+        # overlap_prediction = load_diarization(overlap_file_path)
     return 0
 
 
