@@ -47,6 +47,10 @@ You can find out what version of python you have with
 ```
 python --version
 ```
+or
+```
+python3 --version
+```
 
 you can find out which pip version you are running using
 
@@ -74,11 +78,24 @@ They begin as blank slates. You then install libs into them. You can destroy the
 To create a virtual env you can use the `venv` module in the base python, and define the `directory` in which to create this venv,
 
 ```
-python -m venv .my-virtual-env
+python3 -m venv .my-virtual-env
 ```
 This will create a hidden directory called `.my-virtual-env` in the current directory. 
 
-### Activate the environment
+### Install libraries into the virtual environment
+Before you activate the virtual environment, you need to install the necessary packages for pyannote-audio.
+These are found in the requirements.txt. More information on the requirements is detailed in the pyannote github readme file.
+(see page end)
+
+Install requirements within the virtual environment using
+
+``` 
+ ./.venv/bin/pip install -r requirements.txt 
+```
+NB: torch is quite a large package and will take some time to install. 
+ You only need to do this step once
+
+### Activate virtual environment
 
 You can activate this venv here by sourcing the activate file
 ```
@@ -123,6 +140,8 @@ To run all commands execute
 ```
 make run
 ```
+
+this should populate your virtual environment with all you need to start processing .wavfiles
 
 ## running Speech Diarization
 
