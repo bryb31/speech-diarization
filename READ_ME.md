@@ -138,10 +138,10 @@ make piplist
 To run all commands execute
 
 ```
-make run
+make
 ```
 
-this should populate your virtual environment with all you need to start processing .wavfiles
+This will populate your virtual environment with all you need to start processing .wavfiles
 
 ## running Speech Diarization
 
@@ -153,7 +153,7 @@ Once you have activated your virtual environment
 and run the Makefile
 
 ```
-make run
+make
 ```
 
 you should now have installed pyannote-audio and torch via the requirements.txt (see setup.py). Torch is large so this will take a while but you will only need to do this once.
