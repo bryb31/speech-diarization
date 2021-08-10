@@ -26,4 +26,4 @@ test : .venv/bin/speech .venv/bin/flake8 .venv/bin/coverage
 	.venv/bin/coverage run -m pytest
 
 clean :
-	rm -rf 
+	rm -rf.venv/
