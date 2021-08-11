@@ -78,7 +78,7 @@ They begin as blank slates. You then install libs into them. You can destroy the
 To create a virtual env you can use the `venv` module in the base python, and define the `directory` in which to create this venv,
 
 ```
-python3 -m venv .my-virtual-env
+python3 -m venv .venv
 ```
 This will create a hidden directory called `.my-virtual-env` in the current directory. 
 
@@ -99,23 +99,23 @@ NB: torch is quite a large package and will take some time to install.
 
 You can activate this venv here by sourcing the activate file
 ```
-. ./.my-virtual-env/bin/activate
+. ./.venv/bin/activate
 ```
 
 Once activated, commands using `python` and `pip` will use those related to the virtual env.
 
 You can also use the python binary or related pip binary in this environment with
 ```
-./.my-virtual-env/bin/python
+./.venv/bin/python
 ```
 or
 ```
-./.my-virtual-env/bin/pip
+./.venv/bin/pip
 ```
 
 Make sure you are not in an activated virtual environment by executing `deactivate` and checkout what happens if you execute 
 ```
-./.my-virtual-env/bin/pip list
+./.venv/bin/pip list
 ```
 versus
 ```
@@ -135,10 +135,10 @@ make <name of task>
 e.g.
 make piplist
 ```
-To run all commands execute
+To test setup execute
 
 ```
-make
+make test
 ```
 
 This will populate your virtual environment with all you need to start processing .wavfiles
@@ -147,13 +147,13 @@ This will populate your virtual environment with all you need to start processin
 
 Once you have activated your virtual environment 
 ```
-. ./.my-virtual-env/bin/activate
+. ./.venv/bin/activate
 ```
 
-and run the Makefile
+and run the Makefile command 'test' to check dependancies
 
 ```
-make
+make test
 ```
 
 you should now have installed pyannote-audio and torch via the requirements.txt (see setup.py). Torch is large so this will take a while but you will only need to do this once.

@@ -22,7 +22,6 @@ def main(args=None):
 
     print(args.input)
 
-
     data_dir = args.input
     speechdiarization.diarization.run_diarization_pipeline(
         data_dir, output_dir=None, overwrite_data=False
